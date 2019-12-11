@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import {
+  Navbar,
+  Button
+} from 'react-bootstrap';
 
 import NotesContainer from "./NotesContainer";
 
@@ -28,6 +32,18 @@ export default class NotesPage extends Component {
   }
   
   render() {
-    return <NotesContainer notes={this.state.notes} />;
+    return (
+      <React.Fragment>
+        <Navbar>
+          <Navbar.Brand>
+            Notery
+          </Navbar.Brand>
+          <Navbar.Collapse>
+            <Button>Log out</Button>
+          </Navbar.Collapse>
+        </Navbar>
+        <NotesContainer notes={this.state.notes} />
+      </React.Fragment>
+    );
   }
 };
