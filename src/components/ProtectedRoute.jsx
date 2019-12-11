@@ -4,7 +4,7 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import isLoggedIn from './isLoggedIn';
+import isLoggedIn from '../utils/isLoggedIn';
 
 export default function ProtectedRoute(props) {
   return (

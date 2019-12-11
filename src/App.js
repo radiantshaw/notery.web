@@ -1,17 +1,17 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+  Switch
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
 import {
   LoginPage,
-  RegisterForm
+  RegisterForm,
+  ProtectedRoute,
+  LimitedRoute
 } from './components';
-import { ProtectedRoute } from './utils';
 
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
           <ProtectedRoute path="/" exact>
             <div>Logged in!</div>
           </ProtectedRoute>
-          <Route path="/login">
+          <LimitedRoute path="/login">
             <LoginPage />
-          </Route>
-          <Route path="/register">
+          </LimitedRoute>
+          <LimitedRoute path="/register">
             <RegisterForm />
-          </Route>
+          </LimitedRoute>
         </Switch>
       </Router>
     </Container>
