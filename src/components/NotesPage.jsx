@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import {
-  Navbar,
-  Button
+  Navbar
 } from 'react-bootstrap';
 
 import NotesContainer from "./NotesContainer";
+import Logout from './Logout';
 
 export default class NotesPage extends Component {
   constructor(props) {
@@ -36,10 +36,12 @@ export default class NotesPage extends Component {
       <React.Fragment>
         <Navbar>
           <Navbar.Brand>
-            Notery
+            <h1>
+              Notery
+            </h1>
           </Navbar.Brand>
           <Navbar.Collapse>
-            <Button>Log out</Button>
+            <Logout />
           </Navbar.Collapse>
         </Navbar>
         <NotesContainer notes={this.state.notes} />
