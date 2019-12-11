@@ -29,14 +29,13 @@ class AuthPage extends Component {
         isLoading: false
       });
       
-      if (data["error"] !== undefined) {
-        this.setState({
-          isError: data["error"]
-        });
-      } else {
-        cookies.set('token', data["token"])
-        this.props.history.push('/');
-      }
+      cookies.set('token', data["token"]);
+      this.props.history.push('/');
+    }).catch(error => {
+      this.setState({
+        isLoading: false,
+        isError: error.message
+      });
     });
   }
   

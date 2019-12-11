@@ -5,5 +5,13 @@ export default function api(method, path, data) {
     headers: {
       "Content-Type": "application/json"
     }
-  }).then(res => res.json());
+  }).then(response => {
+    return response.json().then(data => {
+      if (!response.ok) {
+        throw new Error(data["error"])
+      }
+
+      return data;
+    })
+  })
 }
