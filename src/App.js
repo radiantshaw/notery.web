@@ -11,7 +11,8 @@ import {
   LoginForm,
   RegisterForm,
   ProtectedRoute,
-  LimitedRoute
+  LimitedRoute,
+  NotesPage
 } from './components';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Switch>
           <ProtectedRoute path="/notes">
-            <div>Logged in!</div>
+            <NotesPage />
           </ProtectedRoute>
           <LimitedRoute path="/login">
             <AuthPage path="/login">
