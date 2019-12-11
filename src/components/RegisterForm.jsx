@@ -3,13 +3,14 @@ import {
   Row,
   Col,
   Button,
-  Form
+  Form,
+  Alert
 } from 'react-bootstrap';
 
 import '../css/RegisterForm.css';
 import { useTextInputBinding } from '../hooks';
 
-export default function RegisterForm({ isLoading, onSubmit }) {
+export default function RegisterForm({ isLoading, isError, onSubmit }) {
   let [email, bindEmail] = useTextInputBinding();
   let [password, bindPassword] = useTextInputBinding();
   let [passwordConfirmation, bindPasswordConfirmation] = useTextInputBinding();
@@ -34,6 +35,12 @@ export default function RegisterForm({ isLoading, onSubmit }) {
         lg={{ span: 6, offset: 3 }}
       >
         <Form className="register-form" onSubmit={handleSubmit}>
+          {isError ? (
+            <Alert variant="danger">
+              {isError}
+            </Alert>
+          ) : null}
+          
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control

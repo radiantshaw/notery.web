@@ -8,7 +8,7 @@ import { Container } from 'react-bootstrap';
 
 import {
   LoginPage,
-  RegisterForm,
+  RegisterPage,
   ProtectedRoute,
   LimitedRoute
 } from './components';
@@ -25,7 +25,7 @@ function App() {
             <LoginPage />
           </LimitedRoute>
           <LimitedRoute path="/register">
-            <RegisterForm />
+            <RegisterPage />
           </LimitedRoute>
         </Switch>
       </Router>

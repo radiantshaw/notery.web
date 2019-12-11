@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
-import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 import { api } from '../utils';
 
 const cookies = new Cookies();
 
-class LoginPage extends Component {
+class RegisterPage extends Component {
   constructor(props) {
     super(props);
 
@@ -19,15 +19,16 @@ class LoginPage extends Component {
     };
   }
 
-  handleSubmit(email, password) {
+  handleSubmit(email, password, passwordConfirmation) {
     this.setState({
       isLoading: true,
       isError: false
     });
     
-    api('POST', '/login', {
+    api('POST', '/register', {
       "email": email,
-      "password": password
+      "password": password,
+      "password_confirmation": passwordConfirmation
     }).then(data => {
       this.setState({
         isLoading: false
@@ -37,16 +38,16 @@ class LoginPage extends Component {
         this.setState({
           isError: data["error"]
         });
+      } else {
+        cookies.set('token', data["token"])
+        this.props.history.push('/');
       }
-
-      cookies.set('token', data["token"])
-      this.props.history.push('/');
     });
   }
   
   render() {
     return (
-      <LoginForm
+      <RegisterForm
         isLoading={this.state.isLoading}
         isError={this.state.isError}
         onSubmit={this.handleSubmit}
@@ -55,4 +56,4 @@ class LoginPage extends Component {
   }
 }
 
-export default withRouter(LoginPage);
+export default withRouter(RegisterPage);
