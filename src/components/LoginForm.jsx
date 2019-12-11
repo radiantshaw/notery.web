@@ -17,7 +17,10 @@ export default function LoginForm({ isLoading, isError, onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    onSubmit(email, password);
+    onSubmit({
+      "email": email,
+      "password": password
+    });
   }
   
   return (

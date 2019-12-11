@@ -7,8 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
 import {
-  LoginPage,
-  RegisterPage,
+  AuthPage,
+  LoginForm,
+  RegisterForm,
   ProtectedRoute,
   LimitedRoute
 } from './components';
@@ -22,10 +23,18 @@ function App() {
             <div>Logged in!</div>
           </ProtectedRoute>
           <LimitedRoute path="/login">
-            <LoginPage />
+            <AuthPage path="/login">
+              {(props) => (
+                <LoginForm {...props} />
+              )}
+            </AuthPage>
           </LimitedRoute>
           <LimitedRoute path="/register">
-            <RegisterPage />
+            <AuthPage path="/register">
+              {(props) => (
+                <RegisterForm {...props} />
+              )}
+            </AuthPage>
           </LimitedRoute>
         </Switch>
       </Router>

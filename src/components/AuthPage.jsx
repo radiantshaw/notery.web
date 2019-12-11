@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
-import RegisterForm from './RegisterForm';
 import { api } from '../utils';
 
 const cookies = new Cookies();
 
-class RegisterPage extends Component {
+class AuthPage extends Component {
   constructor(props) {
     super(props);
 
@@ -19,17 +18,13 @@ class RegisterPage extends Component {
     };
   }
 
-  handleSubmit(email, password, passwordConfirmation) {
+  handleSubmit(data) {
     this.setState({
       isLoading: true,
       isError: false
     });
     
-    api('POST', '/register', {
-      "email": email,
-      "password": password,
-      "password_confirmation": passwordConfirmation
-    }).then(data => {
+    api('POST', this.props.path, data).then(data => {
       this.setState({
         isLoading: false
       });
@@ -46,14 +41,12 @@ class RegisterPage extends Component {
   }
   
   render() {
-    return (
-      <RegisterForm
-        isLoading={this.state.isLoading}
-        isError={this.state.isError}
-        onSubmit={this.handleSubmit}
-      />
-    );
+    return this.props.children({
+      isLoading: this.state.isLoading,
+      isError: this.state.isError,
+      onSubmit: this.handleSubmit
+    });
   }
 }
 
-export default withRouter(RegisterPage);
+export default withRouter(AuthPage);
