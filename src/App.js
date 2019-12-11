@@ -19,7 +19,7 @@ function App() {
     <Container fluid>
       <Router>
         <Switch>
-          <ProtectedRoute path="/" exact>
+          <ProtectedRoute path="/notes">
             <div>Logged in!</div>
           </ProtectedRoute>
           <LimitedRoute path="/login">
