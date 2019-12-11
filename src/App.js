@@ -8,17 +8,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
 import {
-  LoginForm,
+  LoginPage,
   RegisterForm
 } from './components';
+import { ProtectedRoute } from './utils';
 
 function App() {
   return (
     <Container fluid>
       <Router>
         <Switch>
+          <ProtectedRoute path="/" exact>
+            <div>Logged in!</div>
+          </ProtectedRoute>
           <Route path="/login">
-            <LoginForm />
+            <LoginPage />
           </Route>
           <Route path="/register">
             <RegisterForm />
