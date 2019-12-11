@@ -3,13 +3,14 @@ import {
   Row,
   Col,
   Button,
-  Form
+  Form,
+  Alert
 } from 'react-bootstrap';
 
 import '../css/LoginForm.css';
 import { useTextInputBinding } from '../hooks';
 
-export default function LoginForm({ isLoading, onSubmit }) {
+export default function LoginForm({ isLoading, isError, onSubmit }) {
   let [email, bindEmail] = useTextInputBinding();
   let [password, bindPassword] = useTextInputBinding();
 
@@ -27,6 +28,12 @@ export default function LoginForm({ isLoading, onSubmit }) {
         lg={{ span: 6, offset: 3 }}
       >
         <Form className="login-form" onSubmit={handleSubmit}>
+          {isError ? (
+            <Alert variant="danger">
+              {isError}
+            </Alert>
+          ) : null}
+          
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control
