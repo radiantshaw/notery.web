@@ -7,7 +7,10 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
-import { LoginForm } from './components';
+import {
+  LoginForm,
+  RegisterForm
+} from './components';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Switch>
           <Route path="/login">
             <LoginForm />
+          </Route>
+          <Route path="/register">
+            <RegisterForm />
           </Route>
         </Switch>
       </Router>
