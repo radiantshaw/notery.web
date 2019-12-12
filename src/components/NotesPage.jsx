@@ -1,34 +1,32 @@
 import React, { Component } from "react";
-import {
-  Navbar
-} from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 import NotesContainer from "./NotesContainer";
 import Logout from './Logout';
+import Loader from './Loader';
+import { api } from '../utils';
 
 export default class NotesPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: [
-        {
-          id: 1,
-          content: 'Note 1',
-          type: 'mine'
-        },
-        {
-          id: 2,
-          content: 'Note 2',
-          type: 'contributing'
-        },
-        {
-          id: 3,
-          content: 'Note 3',
-          type: 'reading'
-        }
-      ]
+      isLoading: false,
+      notes: []
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+    
+    api('GET', '/notes').then(data => {
+      this.setState({
+        isLoading: false,
+        notes: data
+      })
+    });
   }
   
   render() {
@@ -44,7 +42,11 @@ export default class NotesPage extends Component {
             <Logout />
           </Navbar.Collapse>
         </Navbar>
-        <NotesContainer notes={this.state.notes} />
+        {this.state.isLoading ? (
+          <Loader />
+        ) : (
+          <NotesContainer notes={this.state.notes} />
+        )}
       </React.Fragment>
     );
   }

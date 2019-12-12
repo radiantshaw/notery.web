@@ -6,6 +6,7 @@ import LimitedRoute from './LimitedRoute';
 import NotesPage from './NotesPage';
 import NoteThumb from './NoteThumb';
 import NotesContainer from './NotesContainer';
+import Loader from './Loader';
 
 export {
   LoginForm,
@@ -15,5 +16,6 @@ export {
   LimitedRoute,
   NoteThumb,
   NotesPage,
-  NotesContainer
+  NotesContainer,
+  Loader
 };
