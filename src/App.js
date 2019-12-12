@@ -12,7 +12,8 @@ import {
   RegisterForm,
   ProtectedRoute,
   LimitedRoute,
-  NotesPage
+  NotesPage,
+  NotePage
 } from './components';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
     <Container fluid>
       <Router>
         <Switch>
+          <ProtectedRoute path="/notes/:noteID">
+            <NotePage />
+          </ProtectedRoute>
           <ProtectedRoute path="/notes">
             <NotesPage />
           </ProtectedRoute>

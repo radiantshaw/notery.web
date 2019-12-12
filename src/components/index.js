@@ -7,6 +7,7 @@ import NotesPage from './NotesPage';
 import NoteThumb from './NoteThumb';
 import NotesContainer from './NotesContainer';
 import Loader from './Loader';
+import NotePage from './NotePage';
 
 export {
   LoginForm,
@@ -17,5 +18,6 @@ export {
   NoteThumb,
   NotesPage,
   NotesContainer,
-  Loader
+  Loader,
+  NotePage
 };
