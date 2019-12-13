@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { api } from "../utils";
-import {
-  NoteActions,
-  NoteShareActions,
-  NoteArea,
-  NoteShareList
-} from '../components';
+import { NoteContainer } from '../components';
 
 class NotePage extends Component {
   constructor(props) {
@@ -29,18 +24,12 @@ class NotePage extends Component {
   }
 
   render() {
-    const { type, contributors, readers } = this.state.note;
-    
     return (
-      <React.Fragment>
-        <NoteActions type={type} />
-        <NoteArea type={type} />
-        <NoteShareActions type={type} />
-        <NoteShareList
-          contributors={contributors}
-          readers={readers}
-        />
-      </React.Fragment>
+      <NoteContainer
+        type={this.state.note["type"]}
+        contributors={this.state.note["contributors"]}
+        readers={this.state.note["readers"]}
+      />
     );
   }
 }
