@@ -30,6 +30,8 @@ class NotePage extends Component {
   }
   
   render() {
+    const { contributors, readers } = this.state.note;
+    
     return (
       <React.Fragment>
         {this.state.note["type"] !== "reading" ? (
@@ -60,15 +62,29 @@ class NotePage extends Component {
           <Col sm="12" md="6" lg="6">
             <ListGroup>
               <ListGroup.Item variant="dark">Contributors</ListGroup.Item>
-              <ListGroup.Item>natasha.romanoff@avengers.com</ListGroup.Item>
-              <ListGroup.Item>peter.parker@avengers.com</ListGroup.Item>
+              {contributors ? (
+                contributors.map(contributor => (
+                  <ListGroup.Item key={contributor["id"]}>
+                    {contributor["email"]}
+                  </ListGroup.Item>
+                ))
+              ) : (
+                <ListGroup.Item disabled>No contributors...</ListGroup.Item>
+              )}
             </ListGroup>
           </Col>
           <Col sm="12" md="6" lg="6">
             <ListGroup>
               <ListGroup.Item variant="dark">Readers</ListGroup.Item>
-              <ListGroup.Item>obi.wan.kenobi@jedi.org</ListGroup.Item>
-              <ListGroup.Item>boba.fett@mandalorian.org</ListGroup.Item>
+              {readers ? (
+                readers.map(reader => (
+                  <ListGroup.Item key={reader["id"]}>
+                    {reader["email"]}
+                  </ListGroup.Item>
+                ))
+              ) : (
+                <ListGroup.Item disabled>No readers...</ListGroup.Item>
+              )}
             </ListGroup>
           </Col>
         </Row>
