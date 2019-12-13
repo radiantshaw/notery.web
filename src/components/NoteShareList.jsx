@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Row,
   Col,
-  ListGroup
+  ListGroup,
+  Button
 } from 'react-bootstrap';
 
 export default function NoteShareList({ contributors, readers }) {
@@ -15,6 +16,13 @@ export default function NoteShareList({ contributors, readers }) {
             contributors.map(contributor => (
               <ListGroup.Item key={contributor["id"]}>
                 {contributor["email"]}
+                <Button
+                  className="float-right"
+                  size="sm"
+                  variant="danger"
+                >
+                  Remove
+                </Button>
               </ListGroup.Item>
             ))
           ) : (
@@ -29,6 +37,13 @@ export default function NoteShareList({ contributors, readers }) {
             readers.map(reader => (
               <ListGroup.Item key={reader["id"]}>
                 {reader["email"]}
+                <Button
+                  className="float-right"
+                  size="sm"
+                  variant="danger"
+                >
+                  Remove
+                </Button>
               </ListGroup.Item>
             ))
           ) : (
