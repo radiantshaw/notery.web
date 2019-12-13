@@ -13,6 +13,7 @@ import NoteShareActions from './NoteShareActions';
 import NoteArea from './NoteArea';
 import NoteShareList from './NoteShareList';
 import NoteContainer from './NoteContainer';
+import CreateNoteModal from './CreateNoteModal';
 
 export {
   LoginForm,
@@ -29,5 +30,6 @@ export {
   NoteShareActions,
   NoteArea,
   NoteShareList,
-  NoteContainer
+  NoteContainer,
+  CreateNoteModal
 };

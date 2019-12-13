@@ -4,6 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import NotesContainer from "./NotesContainer";
 import Logout from './Logout';
 import Loader from './Loader';
+import CreateNoteModal from './CreateNoteModal';
 import { api } from '../utils';
 
 export default class NotesPage extends Component {
@@ -39,6 +40,7 @@ export default class NotesPage extends Component {
             </h1>
           </Navbar.Brand>
           <Navbar.Collapse>
+            <CreateNoteModal />
             <Logout />
           </Navbar.Collapse>
         </Navbar>

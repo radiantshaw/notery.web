@@ -17,8 +17,8 @@ function Logout(props) {
   }
   
   return (
-    <Nav className="ml-auto">
-      <Button variant="dark" onClick={handleClick}>Log out</Button>
+    <Nav className="pl-2">
+      <Button variant="danger" onClick={handleClick}>Log out</Button>
     </Nav>
   );
 }
