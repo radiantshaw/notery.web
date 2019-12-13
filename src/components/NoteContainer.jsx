@@ -14,6 +14,7 @@ export default function NoteContainer({ type, contributors, readers }) {
       <NoteShareList
         contributors={contributors}
         readers={readers}
+        isOwner={type === "mine"}
       />
     </React.Fragment>
   );

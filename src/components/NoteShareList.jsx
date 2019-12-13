@@ -6,7 +6,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteShareList({ contributors, readers }) {
+export default function NoteShareList({ contributors, readers, isOwner }) {
   return (
     <Row className="ml-1 mt-2 mr-1">
       <Col sm="12" md="6" lg="6">
@@ -15,14 +15,16 @@ export default function NoteShareList({ contributors, readers }) {
           {contributors ? (
             contributors.map(contributor => (
               <ListGroup.Item key={contributor["id"]}>
-                {contributor["email"]}
-                <Button
-                  className="float-right"
-                  size="sm"
-                  variant="danger"
-                >
-                  Remove
-                </Button>
+                <span>{contributor["email"]}</span>
+                {isOwner ? (
+                  <Button
+                    className="float-right"
+                    size="sm"
+                    variant="danger"
+                  >
+                    Remove
+                  </Button>
+                ) : null}
               </ListGroup.Item>
             ))
           ) : (
@@ -36,14 +38,16 @@ export default function NoteShareList({ contributors, readers }) {
           {readers ? (
             readers.map(reader => (
               <ListGroup.Item key={reader["id"]}>
-                {reader["email"]}
-                <Button
-                  className="float-right"
-                  size="sm"
-                  variant="danger"
-                >
-                  Remove
-                </Button>
+                <span>{reader["email"]}</span>
+                {isOwner ? (
+                  <Button
+                    className="float-right"
+                    size="sm"
+                    variant="danger"
+                  >
+                    Remove
+                  </Button>
+                ) : null}
               </ListGroup.Item>
             ))
           ) : (
