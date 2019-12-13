@@ -3,14 +3,14 @@ import { withRouter } from 'react-router-dom';
 import {
   Row,
   Col,
-  Form,
   ListGroup
 } from 'react-bootstrap';
 
 import { api } from "../utils";
 import {
   NoteActions,
-  NoteShareActions
+  NoteShareActions,
+  NoteArea
 } from '../components';
 
 class NotePage extends Component {
@@ -38,16 +38,7 @@ class NotePage extends Component {
     return (
       <React.Fragment>
         <NoteActions type={this.state.note["type"]} />
-        <Row className="ml-1 mt-2 mr-1">
-          <Col sm="12" md="12" lg="12">
-            <Form.Control
-              as="textarea"
-              rows="10"
-              defaultValue="Sometext"
-              readOnly={this.state.note["type"] === "reading"}
-            />
-          </Col>
-        </Row>
+        <NoteArea type={this.state.note["type"]} />
         <NoteShareActions type={this.state.note["type"]} />
         <Row className="ml-1 mt-2 mr-1">
           <Col sm="12" md="6" lg="6">

@@ -10,6 +10,7 @@ import Loader from './Loader';
 import NotePage from './NotePage';
 import NoteActions from './NoteActions';
 import NoteShareActions from './NoteShareActions';
+import NoteArea from './NoteArea';
 
 export {
   LoginForm,
@@ -23,5 +24,6 @@ export {
   Loader,
   NotePage,
   NoteActions,
-  NoteShareActions
+  NoteShareActions,
+  NoteArea
 };
