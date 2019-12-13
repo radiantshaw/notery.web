@@ -3,14 +3,14 @@ import { withRouter } from 'react-router-dom';
 import {
   Row,
   Col,
-  Button,
   Form,
   ListGroup
 } from 'react-bootstrap';
 
 import { api } from "../utils";
 import {
-  NoteActions
+  NoteActions,
+  NoteShareActions
 } from '../components';
 
 class NotePage extends Component {
@@ -48,12 +48,7 @@ class NotePage extends Component {
             />
           </Col>
         </Row>
-        {this.state.note["type"] === "mine" ? (
-          <Row className="ml-4 mt-3 mr-4">
-            <Button className="mr-auto" variant="dark">Add contributors</Button>
-            <Button className="ml-auto" variant="light">Add readers</Button>
-          </Row>
-        ) : null}
+        <NoteShareActions type={this.state.note["type"]} />
         <Row className="ml-1 mt-2 mr-1">
           <Col sm="12" md="6" lg="6">
             <ListGroup>

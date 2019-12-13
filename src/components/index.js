@@ -9,6 +9,7 @@ import NotesContainer from './NotesContainer';
 import Loader from './Loader';
 import NotePage from './NotePage';
 import NoteActions from './NoteActions';
+import NoteShareActions from './NoteShareActions';
 
 export {
   LoginForm,
@@ -21,5 +22,6 @@ export {
   NotesContainer,
   Loader,
   NotePage,
-  NoteActions
+  NoteActions,
+  NoteShareActions
 };
