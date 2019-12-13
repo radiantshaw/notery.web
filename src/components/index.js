@@ -11,6 +11,7 @@ import NotePage from './NotePage';
 import NoteActions from './NoteActions';
 import NoteShareActions from './NoteShareActions';
 import NoteArea from './NoteArea';
+import NoteShareList from './NoteShareList';
 
 export {
   LoginForm,
@@ -25,5 +26,6 @@ export {
   NotePage,
   NoteActions,
   NoteShareActions,
-  NoteArea
+  NoteArea,
+  NoteShareList
 };
