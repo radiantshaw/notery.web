@@ -9,6 +9,9 @@ import {
 } from 'react-bootstrap';
 
 import { api } from "../utils";
+import {
+  NoteActions
+} from '../components';
 
 class NotePage extends Component {
   constructor(props) {
@@ -34,14 +37,7 @@ class NotePage extends Component {
     
     return (
       <React.Fragment>
-        {this.state.note["type"] !== "reading" ? (
-          <Row className="ml-4 mt-3 mr-4">
-            <Button className="mr-auto">Update</Button>
-            {this.state.note["type"] !== "contributing" ? (
-              <Button className="ml-auto" variant="danger">Delete</Button>
-            ) : null}
-          </Row>
-        ) : null}
+        <NoteActions type={this.state.note["type"]} />
         <Row className="ml-1 mt-2 mr-1">
           <Col sm="12" md="12" lg="12">
             <Form.Control

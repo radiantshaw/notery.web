@@ -8,6 +8,7 @@ import NoteThumb from './NoteThumb';
 import NotesContainer from './NotesContainer';
 import Loader from './Loader';
 import NotePage from './NotePage';
+import NoteActions from './NoteActions';
 
 export {
   LoginForm,
@@ -19,5 +20,6 @@ export {
   NotesPage,
   NotesContainer,
   Loader,
-  NotePage
+  NotePage,
+  NoteActions
 };
