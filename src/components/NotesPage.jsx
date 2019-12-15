@@ -11,10 +11,25 @@ export default class NotesPage extends Component {
   constructor(props) {
     super(props);
 
+    this.handleNoteCreation = this.handleNoteCreation.bind(this);
+
     this.state = {
       isLoading: false,
       notes: []
     };
+  }
+
+  handleNoteCreation(data) {
+    this.setState({
+      isLoading: true
+    });
+
+    api('POST', '/notes', data).then(data => {
+      this.setState({
+        isLoading: false,
+        notes: [...this.state.notes, data]
+      });
+    });
   }
 
   componentDidMount() {
@@ -40,7 +55,7 @@ export default class NotesPage extends Component {
             </h1>
           </Navbar.Brand>
           <Navbar.Collapse>
-            <CreateNoteModal />
+            <CreateNoteModal onCreate={this.handleNoteCreation} />
             <Logout />
           </Navbar.Collapse>
         </Navbar>
