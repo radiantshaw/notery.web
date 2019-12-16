@@ -17,8 +17,17 @@ class NotePage extends Component {
     };
   }
 
-  handleUpdate(content) {
-    console.log(content)
+  handleUpdate(data) {
+    const { match: { params } } = this.props;
+    
+    api('PUT', '/notes/' + params.noteID, data).then(data => {
+      this.setState({
+        note: {
+          ...this.state.note,
+          "content": data["note"]["content"]
+        }
+      });
+    });
   }
 
   handleDelete() {
