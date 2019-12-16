@@ -21,8 +21,10 @@ export default function CreateNoteModal({ onCreate }) {
 
   function handleCreateClick() {
     onCreate({
-      content: content
-    })
+      "note": {
+        "content": content
+      }
+    });
 
     resetShow();
   }

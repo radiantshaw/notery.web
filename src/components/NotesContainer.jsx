@@ -8,7 +8,7 @@ export default function NotesContainer(props) {
     <Tabs defaultActiveKey="mine">
       <Tab eventKey="mine" title="Mine">
         {props.notes.filter(note => {
-          return note['type'] === 'mine'
+          return note['permission'] === 'mine'
         }).map(note => {
           return (
             <NoteThumb key={note['id']} id={note['id']}>
@@ -19,7 +19,7 @@ export default function NotesContainer(props) {
       </Tab>
       <Tab eventKey="contributing" title="Contributing">
         {props.notes.filter(note => {
-          return note['type'] === 'contributing'
+          return note['permission'] === 'contributing'
         }).map(note => (
           <NoteThumb key={note['id']} id={note['id']}>
             {note['content']}
@@ -28,7 +28,7 @@ export default function NotesContainer(props) {
       </Tab>
       <Tab eventKey="reading" title="Reading">
         {props.notes.filter(note => {
-          return note['type'] === 'reading'
+          return note['permission'] === 'reading'
         }).map(note => (
           <NoteThumb key={note['id']} id={note['id']}>
             {note['content']}
