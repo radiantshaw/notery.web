@@ -25,9 +25,11 @@ export default function RegisterForm({ isLoading, isError, onSubmit }) {
     }
 
     onSubmit({
-      "email": email,
-      "password": password,
-      "password_confirmation": passwordConfirmation
+      "user": {
+        "email": email,
+        "password": password,
+        "password_confirmation": passwordConfirmation
+      }
     });
   }
   

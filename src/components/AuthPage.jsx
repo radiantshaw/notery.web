@@ -24,7 +24,7 @@ class AuthPage extends Component {
       isError: false
     });
     
-    api('POST', "/sessions", data).then(data => {
+    api('POST', this.props.path, data).then(data => {
       this.setState({
         isLoading: false
       });
