@@ -5,7 +5,7 @@ import NoteArea from './NoteArea';
 import NoteShareActions from './NoteShareActions';
 import NoteShareList from './NoteShareList';
 
-export default function NoteContainer({ type, contributors, readers, onShare }) {
+export default function NoteContainer({ permission, contributors, readers, onShare }) {
   function handleContributorShare(data) {
     onShare({
       ...data,
@@ -22,17 +22,17 @@ export default function NoteContainer({ type, contributors, readers, onShare }) 
   
   return (
     <React.Fragment>
-      <NoteActions type={type} />
-      <NoteArea type={type} />
+      <NoteActions permission={permission} />
+      <NoteArea permission={permission} />
       <NoteShareActions
-        type={type}
+        permission={permission}
         onContributorShare={handleContributorShare}
         onReaderShare={handleReaderShare}
       />
       <NoteShareList
         contributors={contributors}
         readers={readers}
-        isOwner={type === "mine"}
+        isOwner={permission === "mine"}
       />
     </React.Fragment>
   );

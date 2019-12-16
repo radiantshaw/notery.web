@@ -41,7 +41,7 @@ class NotePage extends Component {
     
     api('GET', '/notes/' + params.noteID).then(data => {
       this.setState({
-        note: data
+        note: data["note"]
       });
     });
   }
@@ -49,7 +49,7 @@ class NotePage extends Component {
   render() {
     return (
       <NoteContainer
-        type={this.state.note["type"]}
+        permission={this.state.note["permission"]}
         contributors={this.state.note["contributing"]}
         readers={this.state.note["reading"]}
         onShare={this.handleShare}
