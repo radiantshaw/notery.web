@@ -13,11 +13,15 @@ export default function NoteContainer(props) {
   const [content, bindContent] = useTextInputBinding(note.content)
 
   function handleUpdateClick() {
-    onUpdate(content);
+    onUpdate({
+      "note": {
+        "content": content
+      }
+    });
   }
 
   function handleDeleteClick() {
-    onDelete(content);
+    onDelete();
   }
   
   function handleContributorShare(data) {

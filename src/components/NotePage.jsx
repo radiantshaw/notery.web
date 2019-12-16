@@ -21,8 +21,12 @@ class NotePage extends Component {
     console.log(content)
   }
 
-  handleDelete(content) {
-    console.log(content)
+  handleDelete() {
+    const { match: { params } } = this.props;
+    
+    api('DELETE', '/notes/' + params.noteID).then(() => {
+      this.props.history.push('/notes');
+    });
   }
 
   handleShare(data) {
