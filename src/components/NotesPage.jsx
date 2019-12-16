@@ -40,8 +40,8 @@ export default class NotesPage extends Component {
     api('GET', '/notes').then(data => {
       this.setState({
         isLoading: false,
-        notes: data
-      })
+        notes: data["notes"]
+      });
     });
   }
   
