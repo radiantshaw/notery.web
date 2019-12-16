@@ -1,11 +1,24 @@
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 export default function api(method, path, data) {
-  return fetch(process.env.REACT_APP_API_BASE_URL + path, {
+  const URL = process.env.REACT_APP_API_BASE_URL + path;
+  const authToken = cookies.get('token');
+  
+  const options = {
     method: method,
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json"
     }
-  }).then(response => {
+  };
+
+  if (authToken) {
+    options.headers["Authorization"] = "Bearer " + authToken;
+  }
+  
+  return fetch(URL, options).then(response => {
     return response.json().then(data => {
       if (!response.ok) {
         throw new Error(data["error"])

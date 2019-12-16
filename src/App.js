@@ -11,7 +11,9 @@ import {
   LoginForm,
   RegisterForm,
   ProtectedRoute,
-  LimitedRoute
+  LimitedRoute,
+  NotesPage,
+  NotePage
 } from './components';
 
 function App() {
@@ -19,8 +21,11 @@ function App() {
     <Container fluid>
       <Router>
         <Switch>
-          <ProtectedRoute path="/" exact>
-            <div>Logged in!</div>
+          <ProtectedRoute path="/notes/:noteID">
+            <NotePage />
+          </ProtectedRoute>
+          <ProtectedRoute path="/notes">
+            <NotesPage />
           </ProtectedRoute>
           <LimitedRoute path="/login">
             <AuthPage path="/login">
