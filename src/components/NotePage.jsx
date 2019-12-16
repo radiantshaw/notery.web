@@ -9,10 +9,20 @@ class NotePage extends Component {
     super(props);
 
     this.handleShare = this.handleShare.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
     this.state = {
       note: {}
     };
+  }
+
+  handleUpdate(content) {
+    console.log(content)
+  }
+
+  handleDelete(content) {
+    console.log(content)
   }
 
   handleShare(data) {
@@ -49,10 +59,10 @@ class NotePage extends Component {
   render() {
     return (
       <NoteContainer
-        permission={this.state.note["permission"]}
-        contributors={this.state.note["contributing"]}
-        readers={this.state.note["reading"]}
+        note={this.state.note}
         onShare={this.handleShare}
+        onUpdate={this.handleUpdate}
+        onDelete={this.handleDelete}
       />
     );
   }
