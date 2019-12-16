@@ -24,12 +24,12 @@ class AuthPage extends Component {
       isError: false
     });
     
-    api('POST', this.props.path, data).then(data => {
+    api('POST', "/sessions", data).then(data => {
       this.setState({
         isLoading: false
       });
       
-      cookies.set('token', data["token"]);
+      cookies.set('token', data["user"]["token"]);
       this.props.history.push('/');
     }).catch(error => {
       this.setState({
