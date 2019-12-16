@@ -5,11 +5,14 @@ import {
   Modal,
   Form
 } from 'react-bootstrap';
-import { useTextInputBinding } from '../hooks';
 
 export default function CreateNoteModal({ onCreate }) {
   const [show, setShow] = useState(false);
-  const [content, bindContent] = useTextInputBinding();
+  const [content, setContent] = useState('');
+
+  function handleContentChange(event) {
+    setContent(event.target.value)
+  }
   
   function showModal() {
     setShow(true);
@@ -17,6 +20,7 @@ export default function CreateNoteModal({ onCreate }) {
 
   function resetShow() {
     setShow(false);
+    setContent('');
   }
 
   function handleCreateClick() {
@@ -40,7 +44,7 @@ export default function CreateNoteModal({ onCreate }) {
           <Form.Control
             as="textarea"
             rows="5"
-            onChange={bindContent}
+            onChange={handleContentChange}
             value={content}
           />
         </Modal.Body>
