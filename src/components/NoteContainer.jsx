@@ -7,7 +7,7 @@ import NoteShareList from './NoteShareList';
 import { useTextInputBinding } from "../hooks";
 
 export default function NoteContainer(props) {
-  const { note, onUpdate, onDelete, onShare } = props;
+  const { note, onUpdate, onDelete, onShare, onUnshare } = props;
   const { permission, contributing, reading } = note;
 
   const [content, bindContent] = useTextInputBinding(note.content)
@@ -45,6 +45,7 @@ export default function NoteContainer(props) {
         contributing={contributing}
         reading={reading}
         isOwner={permission === "mine"}
+        onUnshare={onUnshare}
       />
     </React.Fragment>
   );

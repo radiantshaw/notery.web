@@ -9,6 +9,7 @@ class NotePage extends Component {
     super(props);
 
     this.handleShare = this.handleShare.bind(this);
+    this.handleUnshare = this.handleUnshare.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
 
@@ -51,8 +52,6 @@ class NotePage extends Component {
     }).then(data => {
       const permission = data["share"]["permission"]
 
-      console.log(this.state);
-
       this.setState(prevState => ({
         note: {
           ...prevState.note,
@@ -60,6 +59,22 @@ class NotePage extends Component {
             id: data["share"]["id"],
             email: data["share"]["email"]
           }]
+        }
+      }));
+    });
+  }
+
+  handleUnshare(id) {
+    api('DELETE', '/shares/' + id).then(data => {
+      const permission = data["share"]["permission"];
+      const removableID = data["share"]["id"];
+
+      this.setState(prevState => ({
+        note: {
+          ...prevState.note,
+          [permission]: prevState.note[permission].filter(permissible => {
+            return permissible["id"] !== removableID;
+          })
         }
       }));
     });
@@ -80,6 +95,7 @@ class NotePage extends Component {
       <NoteContainer
         note={this.state.note}
         onShare={this.handleShare}
+        onUnshare={this.handleUnshare}
         onUpdate={this.handleUpdate}
         onDelete={this.handleDelete}
       />

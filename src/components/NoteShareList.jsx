@@ -6,7 +6,11 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteShareList({ contributing, reading, isOwner }) {
+export default function NoteShareList({ contributing, reading, isOwner, onUnshare }) {
+  function handleRemoveClick(event) {
+    onUnshare(event.target.getAttribute("data-share-id"));
+  }
+  
   return (
     <Row className="ml-1 mt-2 mr-1">
       <Col sm="12" md="6" lg="6">
@@ -21,6 +25,8 @@ export default function NoteShareList({ contributing, reading, isOwner }) {
                     className="float-right"
                     size="sm"
                     variant="danger"
+                    onClick={handleRemoveClick}
+                    data-share-id={contributor["id"]}
                   >
                     Remove
                   </Button>
@@ -44,6 +50,8 @@ export default function NoteShareList({ contributing, reading, isOwner }) {
                     className="float-right"
                     size="sm"
                     variant="danger"
+                    onClick={handleRemoveClick}
+                    data-share-id={reader["id"]}
                   >
                     Remove
                   </Button>
