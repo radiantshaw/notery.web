@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
 import {
+  Home,
   AuthPage,
   LoginForm,
   RegisterForm,
@@ -21,6 +22,9 @@ function App() {
     <Container fluid>
       <Router>
         <Switch>
+          <LimitedRoute path="/" exact>
+            <Home />
+          </LimitedRoute>
           <ProtectedRoute path="/notes/:noteID">
             <NotePage />
           </ProtectedRoute>
