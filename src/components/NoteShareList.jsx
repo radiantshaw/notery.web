@@ -6,14 +6,14 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteShareList({ contributors, readers, isOwner }) {
+export default function NoteShareList({ contributing, reading, isOwner }) {
   return (
     <Row className="ml-1 mt-2 mr-1">
       <Col sm="12" md="6" lg="6">
         <ListGroup>
           <ListGroup.Item variant="dark">Contributors</ListGroup.Item>
-          {contributors && contributors.length > 0 ? (
-            contributors.map(contributor => (
+          {contributing && contributing.length > 0 ? (
+            contributing.map(contributor => (
               <ListGroup.Item key={contributor["id"]}>
                 <span>{contributor["email"]}</span>
                 {isOwner ? (
@@ -35,8 +35,8 @@ export default function NoteShareList({ contributors, readers, isOwner }) {
       <Col sm="12" md="6" lg="6">
         <ListGroup>
           <ListGroup.Item variant="dark">Readers</ListGroup.Item>
-          {readers && readers.length > 0 ? (
-            readers.map(reader => (
+          {reading && reading.length > 0 ? (
+            reading.map(reader => (
               <ListGroup.Item key={reader["id"]}>
                 <span>{reader["email"]}</span>
                 {isOwner ? (

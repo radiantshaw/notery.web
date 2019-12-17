@@ -8,7 +8,7 @@ import { useTextInputBinding } from "../hooks";
 
 export default function NoteContainer(props) {
   const { note, onUpdate, onDelete, onShare } = props;
-  const { permission, contributors, readers } = note;
+  const { permission, contributing, reading } = note;
 
   const [content, bindContent] = useTextInputBinding(note.content)
 
@@ -22,20 +22,6 @@ export default function NoteContainer(props) {
 
   function handleDeleteClick() {
     onDelete();
-  }
-  
-  function handleContributorShare(data) {
-    onShare({
-      ...data,
-      permission: "contributing"
-    });
-  }
-
-  function handleReaderShare(data) {
-    onShare({
-      ...data,
-      permission: "reading"
-    });
   }
   
   return (
@@ -53,12 +39,11 @@ export default function NoteContainer(props) {
       />
       <NoteShareActions
         permission={permission}
-        onContributorShare={handleContributorShare}
-        onReaderShare={handleReaderShare}
+        onShare={onShare}
       />
       <NoteShareList
-        contributors={contributors}
-        readers={readers}
+        contributing={contributing}
+        reading={reading}
         isOwner={permission === "mine"}
       />
     </React.Fragment>

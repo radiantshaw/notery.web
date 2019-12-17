@@ -6,7 +6,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteShareAction({ permission, onContributorShare, onReaderShare }) {
+export default function NoteShareAction({ permission, onShare }) {
   const [isContributorModalShown, setContributorModalShown] = useState(false);
   const [isReaderModalShown, setReaderModalShown] = useState(false);
   const [email, setEmail] = useState('');
@@ -34,16 +34,22 @@ export default function NoteShareAction({ permission, onContributorShare, onRead
   }
 
   function handleContributorAddClick() {
-    onContributorShare({
-      "email": email
+    onShare({
+      "user": {
+        "email": email,
+        "permission": "contributing"
+      }
     });
 
     resetContributorModalShown();
   }
 
   function handleReaderAddClick() {
-    onReaderShare({
-      "email": email
+    onShare({
+      "user": {
+        "email": email,
+        "permission": "reading"
+      }
     });
 
     resetReaderModalShown();

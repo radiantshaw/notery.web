@@ -42,17 +42,23 @@ class NotePage extends Component {
     const { match: { params } } = this.props;
     
     api('POST', '/shares', {
-      ...data,
-      "id": params.noteID
+      "share": {
+        ...data,
+        "note": {
+          "id": params.noteID
+        }
+      }
     }).then(data => {
-      const type = data["type"]
-      
+      const permission = data["share"]["permission"]
+
+      console.log(this.state);
+
       this.setState(prevState => ({
         note: {
           ...prevState.note,
-          [type]: [...this.state.note[type], {
-            id: data["id"],
-            email: data["email"]
+          [permission]: [...this.state.note[permission], {
+            id: data["share"]["id"],
+            email: data["share"]["email"]
           }]
         }
       }));
