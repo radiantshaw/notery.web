@@ -4,35 +4,48 @@ import NoteActions from './NoteActions';
 import NoteArea from './NoteArea';
 import NoteShareActions from './NoteShareActions';
 import NoteShareList from './NoteShareList';
+import { useTextInputBinding } from "../hooks";
 
-export default function NoteContainer({ type, contributors, readers, onShare }) {
-  function handleContributorShare(data) {
-    onShare({
-      ...data,
-      permission: "contributing"
+export default function NoteContainer(props) {
+  const { note, onUpdate, onDelete, onShare, onUnshare } = props;
+  const { permission, contributing, reading } = note;
+
+  const [content, bindContent] = useTextInputBinding(note.content)
+
+  function handleUpdateClick() {
+    onUpdate({
+      "note": {
+        "content": content
+      }
     });
   }
 
-  function handleReaderShare(data) {
-    onShare({
-      ...data,
-      permission: "reading"
-    });
+  function handleDeleteClick() {
+    onDelete();
   }
   
   return (
     <React.Fragment>
-      <NoteActions type={type} />
-      <NoteArea type={type} />
+      <NoteActions
+        permission={permission}
+        onUpdateClick={handleUpdateClick}
+        onDeleteClick={handleDeleteClick}
+      />
+      <NoteArea
+        permission={permission}
+        onChange={bindContent}
+        defaultContent={note.content}
+        content={content}
+      />
       <NoteShareActions
-        type={type}
-        onContributorShare={handleContributorShare}
-        onReaderShare={handleReaderShare}
+        permission={permission}
+        onShare={onShare}
       />
       <NoteShareList
-        contributors={contributors}
-        readers={readers}
-        isOwner={type === "mine"}
+        contributing={contributing}
+        reading={reading}
+        isOwner={permission === "mine"}
+        onUnshare={onUnshare}
       />
     </React.Fragment>
   );

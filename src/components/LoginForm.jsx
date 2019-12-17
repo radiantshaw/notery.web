@@ -18,8 +18,10 @@ export default function LoginForm({ isLoading, isError, onSubmit }) {
     event.preventDefault();
 
     onSubmit({
-      "email": email,
-      "password": password
+      "user": {
+        "email": email,
+        "password": password
+      }
     });
   }
   

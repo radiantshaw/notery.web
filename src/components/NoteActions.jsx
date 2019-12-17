@@ -4,13 +4,24 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteActions({ type }) {
+export default function NoteActions({ permission, onUpdateClick, onDeleteClick }) {
   return (
-    type !== "reading" ? (
+    permission !== "reading" ? (
       <Row className="ml-4 mt-3 mr-4">
-        <Button className="mr-auto">Update</Button>
-        {type !== "contributing" ? (
-          <Button className="ml-auto" variant="danger">Delete</Button>
+        <Button
+          className="mr-auto"
+          onClick={onUpdateClick}
+        >
+          Update
+        </Button>
+        {permission !== "contributing" ? (
+          <Button
+            className="ml-auto"
+            variant="danger"
+            onClick={onDeleteClick}
+          >
+            Delete
+          </Button>
         ) : null}
       </Row>
     ) : null

@@ -9,28 +9,72 @@ class NotePage extends Component {
     super(props);
 
     this.handleShare = this.handleShare.bind(this);
+    this.handleUnshare = this.handleUnshare.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
     this.state = {
       note: {}
     };
   }
 
+  handleUpdate(data) {
+    const { match: { params } } = this.props;
+    
+    api('PUT', '/notes/' + params.noteID, data).then(data => {
+      this.setState({
+        note: {
+          ...this.state.note,
+          "content": data["note"]["content"]
+        }
+      });
+    });
+  }
+
+  handleDelete() {
+    const { match: { params } } = this.props;
+    
+    api('DELETE', '/notes/' + params.noteID).then(() => {
+      this.props.history.push('/notes');
+    });
+  }
+
   handleShare(data) {
     const { match: { params } } = this.props;
     
     api('POST', '/shares', {
-      ...data,
-      "id": params.noteID
+      "share": {
+        ...data,
+        "note": {
+          "id": params.noteID
+        }
+      }
     }).then(data => {
-      const type = data["type"]
-      
+      const permission = data["share"]["permission"]
+
       this.setState(prevState => ({
         note: {
           ...prevState.note,
-          [type]: [...this.state.note[type], {
-            id: data["id"],
-            email: data["email"]
+          [permission]: [...this.state.note[permission], {
+            id: data["share"]["id"],
+            email: data["share"]["email"]
           }]
+        }
+      }));
+    });
+  }
+
+  handleUnshare(id) {
+    api('DELETE', '/shares/' + id).then(data => {
+      const permission = data["share"]["permission"];
+      const removableID = data["share"]["id"];
+
+      this.setState(prevState => ({
+        note: {
+          ...prevState.note,
+          [permission]: prevState.note[permission].filter(permissible => {
+            return permissible["id"] !== removableID;
+          })
         }
       }));
     });
@@ -41,7 +85,7 @@ class NotePage extends Component {
     
     api('GET', '/notes/' + params.noteID).then(data => {
       this.setState({
-        note: data
+        note: data["note"]
       });
     });
   }
@@ -49,10 +93,11 @@ class NotePage extends Component {
   render() {
     return (
       <NoteContainer
-        type={this.state.note["type"]}
-        contributors={this.state.note["contributing"]}
-        readers={this.state.note["reading"]}
+        note={this.state.note}
         onShare={this.handleShare}
+        onUnshare={this.handleUnshare}
+        onUpdate={this.handleUpdate}
+        onDelete={this.handleDelete}
       />
     );
   }

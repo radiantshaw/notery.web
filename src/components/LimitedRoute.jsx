@@ -10,7 +10,7 @@ export default function LimitedRoute(props) {
   return (
     <Route {...props}>
       {isLoggedIn() ? (
-        <Redirect to="/" />
+        <Redirect to="/notes" />
       ) : props.children}
     </Route>
   );

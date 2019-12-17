@@ -6,7 +6,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-export default function NoteShareAction({ type, onContributorShare, onReaderShare }) {
+export default function NoteShareAction({ permission, onShare }) {
   const [isContributorModalShown, setContributorModalShown] = useState(false);
   const [isReaderModalShown, setReaderModalShown] = useState(false);
   const [email, setEmail] = useState('');
@@ -34,23 +34,29 @@ export default function NoteShareAction({ type, onContributorShare, onReaderShar
   }
 
   function handleContributorAddClick() {
-    onContributorShare({
-      "email": email
+    onShare({
+      "user": {
+        "email": email,
+        "permission": "contributing"
+      }
     });
 
     resetContributorModalShown();
   }
 
   function handleReaderAddClick() {
-    onReaderShare({
-      "email": email
+    onShare({
+      "user": {
+        "email": email,
+        "permission": "reading"
+      }
     });
 
     resetReaderModalShown();
   }
   
   return (
-    type === "mine" ? (
+    permission === "mine" ? (
       <Row className="ml-4 mt-3 mr-4">
         <Button
           className="mr-auto"

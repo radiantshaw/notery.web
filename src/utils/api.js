@@ -19,6 +19,10 @@ export default function api(method, path, data) {
   }
   
   return fetch(URL, options).then(response => {
+    if (response.status === 204) {
+      return true;
+    }
+
     return response.json().then(data => {
       if (!response.ok) {
         throw new Error(data["error"])

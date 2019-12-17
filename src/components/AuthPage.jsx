@@ -29,7 +29,7 @@ class AuthPage extends Component {
         isLoading: false
       });
       
-      cookies.set('token', data["token"]);
+      cookies.set('token', data["user"]["token"]);
       this.props.history.push('/');
     }).catch(error => {
       this.setState({

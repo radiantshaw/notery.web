@@ -1,3 +1,4 @@
+import Home from './Home';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import AuthPage from './AuthPage';
@@ -16,6 +17,7 @@ import NoteContainer from './NoteContainer';
 import CreateNoteModal from './CreateNoteModal';
 
 export {
+  Home,
   LoginForm,
   RegisterForm,
   AuthPage,

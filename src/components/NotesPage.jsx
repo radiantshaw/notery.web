@@ -27,7 +27,7 @@ export default class NotesPage extends Component {
     api('POST', '/notes', data).then(data => {
       this.setState({
         isLoading: false,
-        notes: [...this.state.notes, data]
+        notes: [...this.state.notes, data["note"]]
       });
     });
   }
@@ -40,8 +40,8 @@ export default class NotesPage extends Component {
     api('GET', '/notes').then(data => {
       this.setState({
         isLoading: false,
-        notes: data
-      })
+        notes: data["notes"]
+      });
     });
   }
   
